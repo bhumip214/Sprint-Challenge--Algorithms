@@ -30,3 +30,17 @@ c)  def bunnyEars(bunnies):
       return 2 + bunnyEars(bunnies-1)       #O(n)
 
     So, answer is O(n). 
+
+
+Exercise-II:
+
+I would implement binary search to solve this problem.
+1. Find middle floor of that n-story building and have top, middle, lower floors
+2. Then throw a egg from that middle floor if egg breaks,
+    then find middle floor of lower floors and then throw egg from that floor,
+    and keep finding until you find a floor from where egg doesn't break, 
+3. Otherwise, if egg doesn't break, 
+    then find middle floor of top floors and then throw egg from that floor, 
+    if egg doesn't break from that floor then again repeat dividing and testing 
+    until you find a floor from where egg breaks.
+4. Step 2 and 3 will repeat until we find right floor. 
