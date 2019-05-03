@@ -96,17 +96,79 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+    # Implementing Bubble Sort and gradually moving larger item towards the end of the array.
+        # First turn on the light 
+        # Loop through the list while Robot's light is on
+            # Swap first and then move right 
+            # Compare the item that robot is holding to the item in front of it in list.
+            # If value of item holding is greater,
+                    # 1. Then swap them so now robot is holding an item with smaller value
+                    # 2. After that move left and drop the item with smaller value there 
+                    # 3. Now, move right and pick up the next item 
+            # If value of item holding is less or equal then repeat step 2 and 3 from above. 
+        # When Robot's light is off then stop. Else, go back to the item at index 0 and repeat the process.
+        
+        self.set_light_on()
+        while self.light_is_on():
+            # print "start of the loopy loooooooooooop"
+            self.set_light_off()
 
+            if self.compare_item() is None:
+                self.swap_item()
+
+            while self.can_move_right() is True:
+                self.move_right()
+                
+                # print "BEFORE ---------------------------"
+                # print "compare item"
+                # print self.compare_item()
+                # print self._list
+
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.swap_item()
+                    self.set_light_on()
+
+                elif self.compare_item() == -1 or self.compare_item() == 0:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.swap_item()
+
+                if self.can_move_right() is not True:
+                    self.swap_item()
+
+                # print "AFTER ---------------------------"
+                # print "position"
+                # print self._position
+                # print self._list
+                
+            while self.can_move_left() is True:
+                self.move_left()
+
+
+
+from time import time
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
+    # Store a startin time
+    start_time = time()
+
+    # Run our code
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
 
     robot.sort()
     print(robot._list)
+
+    # Store the ending time
+    end_time = time()
+
+    print (end_time - start_time)
